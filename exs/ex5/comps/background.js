@@ -30,6 +30,34 @@ class MyBG extends HTMLElement {
     }
 
     //To-do - CREATE THE FUNCTIONALITIES HERE!
+    changeColor(bgcolor='blue'){
+      //this.shadowRoot.querySelector('#bg').style.cssText = `
+       // background-color:${bgcolor};
+      //`
+      this.shadowRoot.querySelector("#mystyle").innerHTML += `
+        @keyframes blink {
+          from {
+            background-color:white;
+            left:${Math.round(Math.random()*100)}vw;
+            top:${Math.round(Math.random()*100)}vh;
+          }
+          to {
+            background-color:${bgcolor};
+            left:${Math.round(Math.random()*100)}vw;
+           top:${Math.round(Math.random()*100)}vh;
+           }
+        }
+      `
+
+      this.shadowRoot.querySelector('#bg').style.cssText = `
+        animation-name: blink;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: linear;
+        position:relative;
+      `
+    }
 }
 
 //MUST HAVE - define the tag for the custom elements

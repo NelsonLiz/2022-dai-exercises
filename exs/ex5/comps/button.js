@@ -20,9 +20,27 @@ class MyButton extends HTMLElement {
     //MUST HAVE - FUNCTION THAT RUNS AFTER IT'S CONNECTED
     connectedCallback(){
         this.shadowRoot.appendChild(template_button.content.cloneNode(true)); //use the template to make a clone
+        this.shadowRoot.querySelector("#test").onclick = () => this.highlight(
+            this.getAttribute('bg'), 
+            this.getAttribute('bo')
+        );
+    
+        if(this.getAttribute("text:")){
+            this.shadowRoot.querySelector("#text").innerText = this.getAttribute("text");
+        }
     }
 
     //To-do - CREATE THE FUNCTIONALITIES HERE!
+    highlight(bgcolor='#333', borderWidth='2px'){
+        this.shadowRoot.querySelector("#test").style.cssText = `
+            background-color:${bgcolor};
+            color:#FFF;
+            border-width:${borderWidth};
+        `;
+
+        document.querySelector("#mybg").changeColor(bgcolor);
+    }
+
 }
 
 //MUST HAVE - define the tag for the custom elements
